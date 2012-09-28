@@ -1,0 +1,120 @@
+#example {
+	width:665px;
+	height:310px;
+	position:relative;
+}
+
+#frame {
+	position:absolute;
+	z-index:0;
+	width:665px;
+	height:310px;
+	top:0;
+	left:0;
+}
+
+/*
+	Slideshow
+*/
+
+#slides {
+	position:absolute;
+	top:2px;
+	left:2px;
+	z-index:100;
+}
+
+.slides_container{
+	width:662px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 9px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+}
+.slides_container a{
+	color: #65d0f9;
+}
+.slides_container div.slide{
+	width:662px;
+	height:306px;
+	display:block;
+}
+.slides_container div.slide img{
+	width:662px;
+	height:306px;
+}
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:134px;
+	left:-24px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+#slides .next {
+	left:662px;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+	margin:26px auto 0;
+	width:100px;
+	display: none;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+/*
+	Caption
+*/
+
+.caption {
+	z-index:500;
+	position:absolute;
+	bottom:-35px;
+	left:0;
+	height:60px;
+	padding:5px 10px 10px 10px;
+	background:#000;
+	background:rgba(0,0,0,.5);
+	width:662px;
+	font-size:1.3em;
+	line-height:1.33;
+	color:#fff;
+	border-top:1px solid #000;
+	text-shadow:none;
+}
+

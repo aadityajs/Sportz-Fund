@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* -------------------Common CSS---------------------- */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, q, small, strong, sub, sup, tt, var,
+ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+blockquote, q {quotes:none}
+table, table td {padding:0;border:none;border-collapse:collapse}
+embed {vertical-align:top}
+* {border:none}
+mark, rp, rt, ruby, summary, time {display:inline}
+th, td, div{
+ 	text-align: left;
+	vertical-align: top;		
+}
+h1, h2, h3, h4, h5, h6{
+	padding: 0px;
+	margin: 0px;
+}
+h1{
+   color:#333333;
+	padding: 15px 0 5px 0;
+	margin: 0px;
+	font: normal 20px Georgia, "Times New Roman", Times, serif;
+}
+h1 span{
+   color:#ff3c00;
+}
+h1 a, h1 a:visited
+{
+    color: #009900;
+}
+ul, li, ol, li, dl, dt{
+    margin: 0px;
+    padding: 0px;
+}
+ul li, ol li, dl dt{
+    margin: 0px;
+    padding: 0px;
+	list-style-type: none;
+}
+p{
+    margin: 5px 0px;
+    padding: 2px 0;
+}
+img{
+    border: none;
+	outline: none;
+	vertical-align: top;
+}
+a{
+    color: #ff6600;
+    text-decoration: none;
+	outline: none;
+}
+a:hover{
+    color: #3c6418;
+    text-decoration: none;
+}
+fieldset{
+    margin: 10px;
+	padding: 5px;
+	border: 1px solid #cccccc;
+}
+fieldset legend{
+    font-weight: bold;
+    color:#cf3f10;
+	margin: 0px;
+	padding: 0 2px;
+}
+select, option, input, textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+	border: 1px solid #cccccc;
+	outline: none;
+}
+#error{
+width: 100%;
+height: auto;
+color:#FF0000;
+font-size:14px;
+text-align:center;
+display:block;
+}

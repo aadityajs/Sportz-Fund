@@ -1,0 +1,504 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background: url(../images/bg.png) left top repeat-x #eaeaea;
+	font: normal 13px/18px Arial, Helvetica, sans-serif;
+	color: #707070;
+}
+.curve{
+    background: #111;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border: solid 1px #a0a0a0;
+}
+/* -------------------general CSS------------------------- */
+.right_align{text-align: right;}
+.center_align{text-align: center;}
+.clear{clear: both; line-height: 0px;}
+.left {float:left}
+.right {float:right}
+.font11{font-size: 11px;}
+.font12{font-size: 12px;}
+.font13{font-size: 13px;}
+.font14{font-size: 14px !important; border-left:1px solid #c4c4c4;}
+.font15{font-size: 15px;}
+.font16{font-size: 16px;}
+.font17{font-size: 17px;}
+.font18{font-size: 18px;}
+.wrapper {width:100%; height: auto; overflow:hidden}
+
+/* ------------------maincontainer CSS--------------------- */
+div#maincontainer{
+	width: 960px;
+	height: auto;
+	clear: both;
+	float: none;
+	margin: 0 auto;
+}
+
+/* ------------------header CSS----------------------------- */
+header{
+	width: 100%;
+	height: 420px;
+}
+.logo{
+	width: 283px;
+	height: 285px;
+	line-height: 275px;
+	float: left;
+	text-align: center;
+	margin: 45px 0 0 0;
+	background: #fff;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 9px 0 0 9px;
+	-moz-border-radius: 9px 0 0 9px;
+	-webkit-border-radius: 9px 0 0 9px;
+	border: 1px solid #fff;
+	box-shadow: 0 1px 6px 0 #757575;
+	box-shadow: inset 0 1px 6px 0 #b2b2b2;
+}
+.logo img{
+	vertical-align: middle;
+}
+.banner{
+	width: 665px;
+	height: 310px;
+	float: right;
+	text-align: center;
+	margin: 25px 0 30px 0;
+	background: #fff;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 9px;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	border: 5px solid #fff;
+	box-shadow: 0 1px 6px 0 #757575;
+}
+/*.banner img{
+	width: 665px;
+	height: 310px;
+}*/
+
+nav{
+	width: 100%;
+	height: auto;
+}
+.nav_left{
+	width: 750px;
+	height: auto;
+	float: left;
+}
+.nav_left li{
+	display: inline-block;
+	color: #646060;
+	font: normal 15px/26px Arial, Helvetica, sans-serif;
+	background: url(../images/bullet_01.png) left center no-repeat;
+}
+.nav_left li a{
+	display: inline;
+	color: #646060;
+	padding: 0 22px;
+	font: normal 15px/26px Arial, Helvetica, sans-serif;
+}
+.nav_left li a:hover, .nav_left li a.here{
+	color: #ff3c00;
+	background: url(../images/bullet_02.png) left center no-repeat;
+}
+/*dc*/
+.dc{
+    display:inline;
+    position: relative;
+    z-index: 1008;
+    margin:0;
+    padding:0;
+}
+.dc:hover{
+    background-color: transparent;
+    z-index: 50;
+}
+.dc ul{ 
+    position: absolute;
+    width:170px;
+    background-color: #1f487c;
+    left: -1000px;
+    list-style-type:none;
+    visibility: hidden;
+}
+.dc:hover ul{ 
+    visibility: visible;
+    top: 26px;
+    left:0px;
+}
+/* -------------------- What the list items will look like inside the dropdown  ---------------------- */
+.dc ul li{
+    margin:0;
+    padding:0;
+    background-color: #313740;
+	background-image: none;
+}
+.dc ul li:hover {
+    background-color: #41c5e5;
+}
+/* -------------------- What the links look like inside the dropdown  ---------------------- */
+.dc ul li a {
+    display:block;
+    padding:4px;
+	width:155px;
+	padding: 0 0 0 15px !important;
+	text-align: left !important;
+	font: normal 12px/36px Arial, Helvetica, sans-serif ;
+	color:#fff;
+	border-bottom: 1px solid #3b4049;
+	border-right: 0px;
+	background: none !important;
+}
+.dc ul li a:hover, .dc ul li a:active{
+    text-decoration: none;
+    color: #fff;
+}
+/*nav_right*/
+.nav_right{
+	width: 210px;
+	height: auto;
+	float: right;
+}
+.nav_right li{
+	display: inline;
+	color: #525252;
+	text-transform: uppercase;
+	font: bold 13px/26px Arial, Helvetica, sans-serif;
+}
+
+/* ------------------body CSS------------------------------- */
+body{
+	width: 100%;
+	height: auto;
+}
+.body_left{
+	width: 690px;
+	height: auto;
+	float: left;
+}
+.body_right{
+	width: 250px;
+	height: auto;
+	float: right;
+}
+/* ------------------body_left CSS---------------------------- */
+.body_left h1{
+	color:#333333;
+	padding: 15px 0 5px 0;
+	margin: 0px;
+	font: normal 20px Georgia, "Times New Roman", Times, serif;
+}
+.body_left h1 span{
+	color:#ff3c00;
+}
+.howit_works{
+	width: 660px;
+	height: auto;
+	padding: 15px;
+	margin: 10px 0 20px 0;
+	background: #eaeaea;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-top: solid 1px #c9c8c8;
+	border-right: solid 1px #fff;
+	border-bottom: solid 1px #fff;
+	border-left: solid 1px #c9c8c8;
+}
+.occasionally{
+	margin: 0 0 0 15px;
+	padding: 0px;
+}
+.occasionally li{
+	padding-left: 10px;
+	font: normal 13px/21px Arial, Helvetica, sans-serif;
+	background: url(../images/arrow_01.png) left 6px no-repeat;
+}
+.occasionally2{
+	margin: 10px 0 0 10px;
+	padding: 0px;
+}
+.occasionally2 li{
+	padding: 6px 0 6px 10px;
+	font: normal 13px/17px Arial, Helvetica, sans-serif;
+}
+.occasionally2 li span{
+	width: 30px;
+	height: 30px;
+	color: #fff;
+	float: left;
+	text-align: center;
+	display: inline-block;
+	font: bold 15px/30px Arial, Helvetica, sans-serif;
+	margin-right: 6px;
+	background: #363f46;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 50px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+}
+
+
+
+/* ------------------login_box CSS---------------------------- */
+.login_box{
+	width: 220px;
+	height: auto;
+	padding: 15px;
+	margin: 20px 0;
+	background: #eaeaea;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-top: solid 1px #c9c8c8;
+	border-right: solid 1px #fff;
+	border-bottom: solid 1px #fff;
+	border-left: solid 1px #c9c8c8;
+}
+.login_box h1{
+	color:#333333;
+	padding: 0 0 10px 0;
+	margin: 0px;
+	border-bottom: solid 1px #c9c8c8;
+	font: normal 18px Georgia, "Times New Roman", Times, serif;
+}
+.login_box input[type=text]{
+	width: 216px;
+	height: 32px;
+	font: normal 13px/32px Arial, Helvetica, sans-serif;
+	padding: 0 0 0 4px;
+	margin: 10px 0 0 0;
+	box-shadow: inset 0 0px 5px 0 #afafaf;
+}
+.login_box input[type=text]:hover{
+	box-shadow: inset 0 0px 5px 0 #868686;
+}
+.login_box input[type=submit]{
+	width: auto;
+	height: 32px;
+	font: bold 13px/32px Arial, Helvetica, sans-serif;
+	margin: 10px 0 0 0;
+	padding: 0 12px;
+	text-transform: uppercase;
+	float: right;
+	color: #fff;
+	background: #2a5949;
+	border: 0px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.user{
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #ffffff;
+	padding: 8px 0;
+	color: #707070;
+	font: normal 12px/18px Verdana, Arial, Helvetica, sans-serif;
+}
+.user img{
+	float: left;
+	padding: 2px;
+	border: 1px solid #cccccc;
+	clear: right;
+	margin: 3px 5px 0 0;	
+}
+.see_all{
+	padding: 12px 0 0 0;
+	color: #303941;
+	font: bold 13px/18px Verdana, Arial, Helvetica, sans-serif;
+}
+.see_all a{
+	color: #303941;
+}
+
+
+/* ------------------footer CSS---------------------------- */
+footer{
+	width: 100%;
+	height: 131px;
+	background: url(../images/footer_bg.png) left top repeat-x;
+}
+.footer{
+	width: 960px;
+	height: auto;
+	margin: 0 auto;
+}
+.footer_left{
+	width: 775px;
+	height: auto;
+	float: left;
+	margin: 25px 0 0 0;
+	color: #788490;
+	font: normal 12px/30px Arial, Helvetica, sans-serif;
+}
+.footer_left a{
+	font: normal 12px/30px Arial, Helvetica, sans-serif;
+	color: #788490;
+	padding: 0 9px;
+}
+.footer_left a:hover{
+	color:#fff;
+}
+.footer_right{
+	width: 175px;
+	height: auto;
+	float: right;
+	margin: 20px 0 0 0;
+	text-align:center;
+	background: url(../images/footer_shade.png) left center no-repeat; 
+}
+
+
+/*for register page*/
+.form{
+	width: 100%;
+	height: auto;
+}
+.form td{
+	padding: 3px 6px;
+	font: normal 13px/28px Arial, Helvetica, sans-serif;
+}
+.form td table td{
+	padding: 0px;
+}
+.form td span{
+	color: #f00;
+}
+.form tr.gray td{
+	padding: 3px 6px;
+	font: normal 13px/28px Arial, Helvetica, sans-serif;
+	background: #f7f6f6;
+}
+.form tr.gray2 td{
+	padding: 3px 6px;
+	font: normal 13px/28px Arial, Helvetica, sans-serif;
+	background: #fff;
+}
+.form tr.gray_dot td{
+	padding: 3px 6px;
+	font: normal 13px/28px Arial, Helvetica, sans-serif;
+	background: #fff;
+	border-bottom: 1px dashed #c9c8c8;
+}
+.form td.radio_txt{
+	padding: 3px 6px;
+	line-height: 28px;	
+}
+.form td.radio_txt input{
+	vertical-align: middle;
+}
+.form input[type=text], .form .textarea1{
+	width: 330px;
+	height: 26px;
+	float: left;
+	padding: 0 0 0 4px;
+	background: #fff;
+	color: #707070;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: solid 1px #c9c8c8;
+	box-shadow: inset 0 0 2px 0 #bcbcbc;
+	font: normal 12px/26px Arial, Helvetica, sans-serif;
+}
+.form input[type=password], .form .textarea1{
+	width: 330px;
+	height: 26px;
+	float: left;
+	padding: 0 0 0 4px;
+	background: #fff;
+	color: #707070;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: solid 1px #c9c8c8;
+	box-shadow: inset 0 0 2px 0 #bcbcbc;
+	font: normal 12px/26px Arial, Helvetica, sans-serif;
+}
+.form input[type=submit]{
+	width: auto;
+	height: 32px;
+	color: #fff;
+	display: inline-block;
+	padding: 3px 12px;
+	background: #2a5949;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border: solid 1px #e2e2e2;
+	font: bold 15px/32px Arial, Helvetica, sans-serif;
+	border: 0px;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+/*faq*/
+
+.common_box{
+	width: 930px;
+	height: auto;
+	padding: 15px;
+	margin: 10px 0 20px 0;
+	background: #eaeaea;
+	behavior:url(js/PIE.htc);
+	position:relative;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-top: solid 1px #c9c8c8;
+	border-right: solid 1px #fff;
+	border-bottom: solid 1px #fff;
+	border-left: solid 1px #c9c8c8;
+}
+.user_img{
+	width: 164px;
+	height: 160px;
+	padding: 3px;
+	background: #fff;
+	border: 1px solid #c9c8c8;	
+}
+.user_img2{
+	width: 80px;
+	height: 80px;
+	padding: 3px;
+	background: #fff;
+	float: left;
+	margin-right: 6px;
+	border: 1px solid #c9c8c8;	
+}
+table.calender{
+	width: 100%;
+	height: auto;
+	margin: 6px 0;
+}
+table.calender th{
+	background: #c4c4c4 !important;
+	border: 1px solid #fff;
+	text-align: center;
+	color: #333;
+}
+table.calender td{
+	background: #d7d7d7 !important;
+	border: 1px solid #fff;
+	text-align: center;
+	font: normal 50px Arial, Helvetica, sans-serif !important;
+}
