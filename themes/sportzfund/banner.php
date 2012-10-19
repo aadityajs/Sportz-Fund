@@ -3,16 +3,22 @@ $url = $this->uri->segment(1)."/".$this->uri->segment(2)."/".$this->uri->segment
 $url = empty($url) ? base_url() : $url;
 preg_match('/^[a-zA-Z].*/', $this->uri->segment(2), $match);
 preg_match('/^[a-zA-Z].*/', $this->uri->segment(3), $orgControllerMatch);
+preg_match('/^[a-zA-Z0-9].*/', $this->uri->segment(3), $orgMatch);
+$orgPages='';
 if (!empty($match))
 $orgControllerPages = $match[0];
 if (!empty($orgControllerMatch))
 $orgControllerDonatePages = $orgControllerMatch[0];
+if (!empty($orgMatch))
+$orgPages = $orgMatch[0];
 if (
 	//site_url($url) != site_url('organization/register') &&
 	//site_url($url) != site_url('organization/login') &&
 	//site_url($url) != site_url('organization/account') &&
 	//site_url($url) != site_url('organization/ordercard') &&
 	//site_url($url) != site_url('organization/ordersuccess')&&
+	//site_url($url) != site_url('organization/thanks')&&
+	site_url($url) != site_url('organization/changepassword/'.$orgPages)&&
 	site_url($url) != site_url('fundraiser')&&
 	site_url($url) != site_url('pages/why_sportzfund')&&
 	site_url($url) != site_url('pages/how_it_works')&&
@@ -36,7 +42,7 @@ if (
 <div id="bannerbg">
 <div class="banner">
 <div class="price_quote">
-<p id="totalDonation">$87,114</p>
+<p id="totalDonation">$<?php echo $totalDonation['donation']; ?></p>
 </div>
 <div class="clear"></div>
 <div class="price_bg"><p>Amount of money raised for organizations</p></div>

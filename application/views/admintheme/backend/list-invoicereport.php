@@ -37,7 +37,7 @@
 				
 				<td class="table_date"><?php echo $invoice[$i]['dn']; ?></td>
 				
-				<td class="table_title"><?php if($invoice[$i]['pay_type']=='paypalPayment'){ echo 'Paypal'; } ?></td>
+				<td class="table_title"><?php if($invoice[$i]['pay_type']=='paypalPayment'){ echo 'Paypal'; }else{ echo 'Cash';} ?></td>
 				<td class="table_date"><?php echo $invoice[$i]['status']; ?></td>
 				<td class="table_date"><a href="<?php echo site_url("admin/report/status/").'/'.$invoice[$i]['status'].'/'.$invoice[$i]['invoice_date']; ?>"><img src="<?php echo $this->config->item('admin_theme_url')?>img/accept.jpg" alt="accepted"/></a></td>
 			</tr>

@@ -65,9 +65,9 @@ $(document).ready(function() {
 	  <ul>
 	  	<li><div class="img"><a href="<?php echo site_url('organization/ordercard'); ?>"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img1.png" border="0" /></a></div><div><p><a href="<?php echo site_url('organization/ordercard'); ?>">Order hard copy fundraising cards </a></p></div>
 	  	</li>
-		<li><div class="img"><a href="#"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img2.png" border="0" /></a></div><div><p><a href="#">Change address,POC, email, etc. </a></p></div>
+		<li><div class="img"><a href="<?php echo site_url('organization/editProfile'); ?>"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img2.png" border="0" /></a></div><div><p><a href="<?php echo site_url('organization/editProfile'); ?>">Change address,POC, email, etc. </a></p></div>
 		</li>
-		<li><div class="img"><a href="#"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img3.png" border="0" /></a></div><div><p><a href="#">Activate hard copy cards. </a></p></div>
+		<li><div class="img"><a href="<?php echo site_url('organization/hardcopy'); ?>"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img3.png" border="0" /></a></div><div><p><a href="<?php echo site_url('organization/hardcopy'); ?>">Activate hard copy cards. </a></p></div>
 		</li>
 		<li><div class="img"><a href="#"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img4.png" border="0" /></a></div><div><p><a href="<?php echo site_url('pages/tips_tricks'); ?>">Tips, Forms and guidance to make your fundraiser a huge success </a></p></div>
 		</li>
@@ -75,9 +75,9 @@ $(document).ready(function() {
 		</li>
 		<li><div class="img"><a href="<?php echo site_url('pages/contact_us'); ?>"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img6.png" border="0" /></a></div><div><p><a href="<?php echo site_url('pages/contact_us'); ?>">Contact us with any questions, problems, issues, or concerns.  We are always here for you! </a></p></div>
 		</li>
-		<li><div class="img"><a href="#"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img7.png" border="0" /></a></div><div><p><a href="#">Please leave us a testimonial for your successful fundraiser! </a></p></div>
+		<li><div class="img"><a href="<?php echo site_url('organization/testimonial'); ?>"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img7.png" border="0" /></a></div><div><p><a href="<?php echo site_url('organization/testimonial'); ?>">Please leave us a testimonial for your successful fundraiser! </a></p></div>
 		</li>
-		<li><div class="img"><a href="#"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img8.png" border="0" /></a></div><div><p><a href="#">Activate and register a cash paying customer </a></p></div>
+		<li><div class="img"><a href="<?php echo site_url('organization/cashpaying'); ?>"><img src="<?php echo $this->config->item('theme_url')?>images/like_to_img8.png" border="0" /></a></div><div><p><a href="<?php echo site_url('organization/cashpaying'); ?>">Activate and register a cash paying customer </a></p></div>
 		</li>
 		</ul>
 		<div class="clear"></div>

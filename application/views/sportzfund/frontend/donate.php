@@ -46,12 +46,14 @@ $(document).ready(function() {
 <div><h1>Make Donation</h1></div>
 <div class="clear"></div>
 
-<?php if ($this->session->userdata('message')) { ?>
-	<div align="center" style="color:#990000; text-align:center;"><?php echo $this->session->userdata('message');?></div>
-<?php } $this->session->unset_userdata('message'); ?>
+<?php //print_r($this->session->userdata('errormsg')); ?>
+
+<?php if ($this->session->userdata('errormsg')) { ?>
+	<div align="center" style="color:#990000; text-align:left;"><?php echo $this->session->userdata('errormsg');?></div>
+<?php } $this->session->unset_userdata('errormsg'); ?>
 
 
-<form method="post" enctype="multipart/form-data" id="frmDonation" name="frmDonation">
+<form method="post" enctype="multipart/form-data" id="frmDonation" name="frmDonation" >
 
 
 
@@ -161,7 +163,12 @@ $(document).ready(function() {
       <td><table width="100%" border="0" cellspacing="4" cellpadding="4">
         <tr>
           <th width="34%"><strong>Card Type:</strong></th>
-          <td width="66%"><input type="text" class="textfield" name="cardType" id="cardType"/></td>
+          <td width="66%">
+		  <input type="radio" class="" name="cardType" id="cardTypeVisa" value="Visa" checked/> Visa
+          	<input type="radio" class="" name="cardType" id="cardTypeMasterCard " value="MasterCard"/> Master Card
+          	<input type="radio" class="" name="cardType" id="cardTypeDiscover" value="Discover"/> Discover
+
+		  <!--<input type="text" class="textfield" name="cardType" id="cardType"/>--></td>
         </tr>
         <tr>
           <th><strong>Credit Card Number:</strong></th>

@@ -13,10 +13,15 @@ $postval=$this->session->userdata('post');
 <div class="clear"></div>
 <div class="find_base_box">
 
-<?php foreach ($allOrgList as $key=>$val) { ?>
+<?php 
+$i=0;
+foreach ($allOrgList as $key=>$val) { 
+//echo $allDonList0['sm'];exit;
+//print_r($allDonList[$i]['sm']);
+?>
 <!-- user_id 	orgname 	 	 	 	ein 	 	namecont 	 	phemail 	contactaddress 	phone 	contcitystatezip 	orgusername 	password 	how_did_u_hear 	how_did_u_find_out 	game 	account_type 	activation_code 	temp_password 	is_approved 	is_active 	sex 	mid_initial 	userimage 	about_me 	return_agrmnt 	date 	is_submitted -->
 <div class="find_box">
-	<div class="img_box"><img src="<?php echo base_url()?>uploads/<?php echo $val['userimage']; ?>" border="0" /><h2><?php echo $val['orgusername']; ?></h2></div>
+	<div class="img_box"><img src="<?php echo base_url()?>uploads/<?php if($val['userimage']!=''){ echo $val['userimage'];}else{?>no_img.jpg <?php } ?>" border="0" /><h2><?php echo $val['orgusername']; ?></h2></div>
 	<div class="find_user">
 		<ul>
 			<li><?php echo ucwords($val['fname'].' '.$val['lname']); ?></li>
@@ -25,7 +30,7 @@ $postval=$this->session->userdata('post');
 	</div>
 	<div class="clear"></div>
 	<div class="find_user_details">
-	<div class="by_img"><img src="<?php echo $this->config->item('theme_url')?>images/by_img1.jpg" border="0" /></div>
+	<div class="by_img"><img src="<?php echo base_url()?>uploads/<?php if($val['userimage']!=''){ echo $val['userimage'];}else{?>no_img.jpg <?php } ?>" width="50" height="50" border="0" /></div>
 	<div class="by_txt">
 		<ul>
 			<li><?php echo $val['address']; ?>,<?php echo $val['citystatezip']; ?></li>
@@ -35,9 +40,14 @@ $postval=$this->session->userdata('post');
 	</div>
 	<div class="clear"></div>
 	<div class="progress_bar_box">
-		<div class="label_raised">219.4k raised</div>
-		<div class="label_goal">250k goal</div>
-	<div class="clear"></div>
+	<?php
+	// $sql="select sum(donation) sm from sf_donation where orgname='".$val['orgname']."' order by orgname";
+	//$raise=mysql_fetch_array(mysql_query($sql));
+	?>
+		<div class="label_raised"><?php if($allDonList[$i]['sm']){echo '$';echo number_format($allDonList[$i]['sm'],2);}else{echo '$';echo '0.00';}?><!--219.4--> raised 			and counting
+		</div>
+		<!--<div class="label_goal">250k goal</div>
+	<div class="clear"></div>-->
 	</div>
 	<div class="button_box1">
 		<a href="<?php echo site_url('organization/donate/').'/'.$val['orgname']; ?>">
@@ -45,7 +55,7 @@ $postval=$this->session->userdata('post');
 		</a>
 	</div>
 </div>
-<?php } ?>
+<?php $i++; } ?>
 
 
 </div>

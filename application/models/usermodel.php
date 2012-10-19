@@ -19,6 +19,31 @@ class Usermodel extends CI_Model {
 
 
 //===========================================================================================================
+	function listAllDon($orgname)
+	{
+		 $Q = $this->db->query("select sum(donation) sm from sf_donation where orgname='".$orgname."' order by orgname");
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->row_array();
+			return $row;
+		}
+		else
+		return false;
+	}
+	function gettesti()
+	{
+
+		 $Q = $this->db->query("SELECT * FROM `sf_testimonial` WHERE `is_active`='active' order by rand() limit 1");
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->row_array();
+			return $row;
+		}
+		else
+		return false;
+	}
+
+
 	function register_organization() {
 
 		$img = $this->upload->data();
@@ -51,6 +76,124 @@ class Usermodel extends CI_Model {
 			 //exit;
 
 		  $this->db->insert('user', $orgRegDetails);
+	}
+
+   function editPro($id) {
+
+
+		$img = $this->upload->data();
+		 $imgName = $img['file_name'];
+	
+		$orgRegDetails = array(
+
+					'ein' => $this->input->post('ein'),
+					'namecont' => $this->input->post('namecont'),
+					'address' => $this->input->post('address'),
+					'citystatezip' => $this->input->post('citystatezip'),
+					'phemail' => $this->input->post('phemail'),
+					'fname' => $this->input->post('fname'),
+					'lname' => $this->input->post('lname'),
+					'contactaddress' => $this->input->post('contactaddress'),
+					'contcitystatezip' => $this->input->post('contcitystatezip'),
+					'phone' => $this->input->post('phone'),
+					'email' => $this->input->post('email'),
+
+					'password' => $this->input->post('password'),
+					//'confpassword' => $this->input->post('confpassword'),
+					'userimage' => $imgName
+
+                );
+
+			// echo '<pre>'.print_r($orgRegDetails, true).'</pre>';
+			// exit;
+
+		$this->db->where('user_id', $id);
+		$this->db->update('user', $orgRegDetails);
+		// $this->db->insert('user', $orgRegDetails);
+	}
+
+	function forget_password($pass)
+	{
+		 $Q = $this->db->query("SELECT * FROM `sf_user` WHERE `email`='".$this->input->post('email')."' ");
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->row_array();
+			 $temp_password =  $pass;
+			$forgetpass = array(
+				    'uid' => $row['user_id'],
+					'email' =>  $this->input->post('email'),
+					'temp_pass' => $temp_password,
+			   );
+			    $this->db->insert('temp_password', $forgetpass);
+			return true;
+		}
+		else
+		return false;
+	}
+	function change($pass)
+	{
+		$Q = $this->db->query("SELECT * FROM `sf_temp_password` WHERE `temp_pass`='".$pass."' ");
+		if ($Q->num_rows() > 0){
+			$row = $Q->row_array();
+			$pass= $this->input->post('pass2');
+			$resetpass = array(
+				    'password' => $this->input->post('pass2')
+
+			   );
+			   $this->db->where('user_id', $row['uid']);
+			   $this->db->update('user', $resetpass);
+			   $this->db->delete('temp_password', array('id' => $row['id']));
+			   return true;
+			}
+			else
+			return false;
+
+	}
+	function insertTesti($id) {
+
+
+		$testiDetails = array(
+				    'user_id' => $id,
+					'user_name' =>  $this->input->post('name'),
+					'msg' => $this->input->post('msg'),
+					'is_active' => 'active'
+			   );
+
+			 //echo '<pre>'.print_r($orgRegDetails, true).'</pre>';
+			 //exit;
+
+		  $this->db->insert('testimonial', $testiDetails);
+	}
+	function insertHardcopy($coupon) {
+
+
+		$hardcopyDetails = array(
+
+					'fname' =>  $this->input->post('fname'),
+					'lname' => $this->input->post('lname'),
+					'add' => $this->input->post('add'),
+					'city' => $this->input->post('city'),
+					'state' => $this->input->post('state'),
+					'zip' => $this->input->post('zip'),
+					'phone' => $this->input->post('phone'),
+					'email' => $this->input->post('email'),
+					'support' => $this->input->post('support'),
+					'code' => $this->input->post('code'),
+					'is_active' => 'active'
+			   );
+
+			$data = array(
+               'is_active' => 'active'
+
+
+            );
+
+		$this->db->where('coupon', $coupon);
+		$this->db->update('donation', $data);
+			// echo '<pre>'.print_r($hardcopyDetails, true).'</pre>';
+			 //exit;
+
+		 // $this->db->insert('testimonial', $testiDetails);
 	}
 
 
@@ -171,6 +314,22 @@ class Usermodel extends CI_Model {
 		return false;
 	}
 
+	function winnerBrodcast(){
+		$this->db->select('*');
+		$this->db->order_by("winner_name", "asc");
+		$Q = $this->db->get('winner');
+		//echo '++++++++++++++++++++++'.$this->db->last_query();
+		//exit;
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->result_array();
+			return $row;
+		}
+		else
+		return false;
+	}
+
+
 	function order_card($proResponse) {
 		$cardOrderDetails = array(
 				   'orgnization' => $this->input->post('org'),
@@ -213,9 +372,17 @@ class Usermodel extends CI_Model {
 
 		  $this->db->insert('card_orders', $cardOrderDetails);
 	}
+function donation($proResponse,$playerdetails) {
 
 
-	function donation($proResponse,$playerdetails) {
+					$amt= ($proResponse['AMT']/10);
+					$coupon='';
+					for($r=0;$r<$amt;$r++)
+					{
+					$coupon.=strtoupper($this->str_rand()).',';
+					}
+	          $this->session->set_userdata('coupon', $coupon);
+
 		$donationDetails = array(
 				    'fname' => $this->input->post('fname'),
 					'lname' => $this->input->post('lname'),
@@ -226,7 +393,7 @@ class Usermodel extends CI_Model {
 					'supportedname' => $this->input->post('supportedname'),
 					'orgname' => $this->uri->segment(3),
 					'donation' => $proResponse['AMT'],
-					'coupon' => strtoupper($this->str_rand()),
+					'coupon' => $coupon,
 
 					'payment' => $this->input->post('payment_method'),
 					'card_type' => $this->input->post('cardType'),
@@ -243,24 +410,11 @@ class Usermodel extends CI_Model {
 					'is_Active' => 'inactive',
 					'tran_id' => $proResponse['TRANSACTIONID']
                 );
-				for($m=0;$m<count($playerdetails);$m++)
-				{
-					$player=array(
-					'player_id' =>$playerdetails[$m]['player_id'],
-					'player_name'=>$playerdetails[$m]['player_name'],
-					'add_date'=>$proResponse['TIMESTAMP'],
-					'coupon'=>strtoupper($this->str_rand()),
+				$this->db->insert('donation', $donationDetails);
+				$don_id=$this->db->insert_id() ;
+				 //$this->session->set_userdata('don_id', $don_id);
 
-					'org_name'=>$this->uri->segment(3),
-					'cust_name'=>$this->input->post('fname')
-
-					);
-					 $this->db->insert('game_card', $player);
-				}
-
-				$this->db->select('*');
-				$this->db->order_by("sp_id", "asc");
-				$Q = $this->db->get('scoring_period');
+				 $Q = $this->db->query('select * from sf_scoring_period');
 
 
 				if ($Q->num_rows() > 0){
@@ -278,10 +432,10 @@ class Usermodel extends CI_Model {
 									 {
 										$from = $r['from'];
 										$to = $r['to'];
-														$invoice=array(
+										$invoice=array(
 												'invoice_from' =>$from,
 												'invoice_to'=>$to,
-												'invoice_date'=>$proResponse['TIMESTAMP'],
+												'invoice_date'=>date('Y-m-d'),
 												'org'=>$this->uri->segment(3),
 
 												'don'=> $proResponse['AMT'],
@@ -289,9 +443,11 @@ class Usermodel extends CI_Model {
 												'status'=>'due'
 
 												);
-									$this->db->insert('invoice', $invoice);
+									$this->db->insert('invoice', $invoice);	
+									break;
 
 									 }
+									 
 
 							 }
 
@@ -299,18 +455,217 @@ class Usermodel extends CI_Model {
 				}
 
 
+			/* if ($this->session->userdata('coupon')) {
+				 $coup=$this->session->userdata('coupon').','.$coupon;
+				 $this->session->set_userdata('coupon', $coup);
+			 }
+			 else
+			 {
+				$this->session->set_userdata('coupon', $coupon);
+			 }*/
+				//echo $this->session->userdata('coupon');
+				/*for($m=0;$m<count($playerdetails);$m++)
+				{
+					$player=array(
+					'player_id' =>$playerdetails[$m]['player_id'],
+					'player_name'=>$playerdetails[$m]['player_name'],
+					'add_date'=>$proResponse['TIMESTAMP'],
+					'coupon'=>$coupon,
 
-		$this->db->insert('donation', $donationDetails);
+					'org_name'=>$this->uri->segment(3),
+					'cust_name'=>$this->input->post('fname')
+
+					);
+					 $this->db->insert('game_card', $player);
+				}*/
+
+				/*$coupDetails = array(
+				'coupon' => $this->session->userdata('coupon')
+
+				 );
+				$this->db->where('don_id',  $this->session->userdata('don_id'));
+				$this->db->update('donation', $coupDetails);*/
+
+			$this->updatePlayers($don_id);
+
+
+
+	}
+	function updatePlayers($id)
+	{
+		 $Q = $this->db->query("SELECT * FROM `sf_donation` WHERE don_id='".$id."'");
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->row_array();
+			$arr=explode(',',$row['coupon']);
+
+			for($k=0;$k<count($arr)-1;$k++)
+			{
+			$playerdetails[$k]=$this->listPlayerByGroupRand();
+			//echo '<pre>';print_r($playerdetails[$k]);
+			for($m=0;$m<count($playerdetails[$k]);$m++)
+				{
+				
+					$player[$k]=array(
+					'player_id' =>$playerdetails[$k][$m]['player_id'],
+					'player_name'=>$playerdetails[$k][$m]['player_name'],
+					'add_date'=>date('Y-m-d'),
+					'coupon'=>$arr[$k],
+
+					'org_name'=>$row['orgname'],
+					'cust_name'=>$row['fname']
+
+					);
+					//echo '<pre>';print_r($player[$k]);
+					 $this->db->insert('game_card', $player[$k]);
+				}
+			//echo $arr[$k];
+			}
+
+			return true;
+		}
+		else
+		return false;
+	}
+
+	function listPlayerByGroupRand() {
+		$this->db->select('*');
+		//$this->db->group_by("player_group");
+
+
+		$Q = $this->db->query('
+						SELECT tmp.player_name,tmp.player_id, tmp.player_team,tmp.player_group
+						FROM sf_players
+						LEFT JOIN (SELECT * FROM sf_players ORDER BY RAND()) tmp ON (sf_players.player_group= tmp.player_group)
+						GROUP BY tmp.player_group
+						ORDER BY RAND();');
+		//echo '++++++++++++++++++++++'.$this->db->last_query();
+		//echo $Q->num_rows();
+		//exit;
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->result_array();
+			return $row;
+
+			//echo '<pre>'.print_r($row, true).'</pre>';
+			//exit;
+		}
+		else
+		return false;
+	}
+
+	function insertCashpaying($id,$playerdetails) {
+
+		$contcitystatezip=$this->input->post('city').','.$this->input->post('state').','.$this->input->post('zip');
+		$this->session->unset_userdata('coupon');
+		$coupon=strtoupper($this->str_rand());
+		$dt=date('Y-m-d');
+
+		$user=$this->getuser($id);
+		//echo $user['orgname'];exit;
+		$amt= ($this->input->post('donate')/10);
+					$coupon='';
+					for($r=0;$r<$amt;$r++)
+					{
+					$coupon.=strtoupper($this->str_rand()).',';
+					}
+	          $this->session->set_userdata('coupon', $coupon);
+		$cashpayingDetails = array(
+
+					'fname' =>  $this->input->post('fname'),
+					'lname' => $this->input->post('lname'),
+					'contactaddress' => $this->input->post('add'),
+					'contcitystatezip' => $contcitystatezip,
+
+					'phone' => $this->input->post('phone'),
+					'email' => $this->input->post('email'),
+					'supportedname' => $this->input->post('support'),
+					'orgname' => $user['orgname'],
+					'donation' => $this->input->post('donate'),
+					'coupon' => $coupon,
+					'payment' => 'cash',
+					'date' => $dt,
+					'status' => 'Success',
+					'is_Active' => 'inactive',
+			   );
+				//$this->session->set_userdata('coupon', $coupon);
+			$this->db->insert('donation', $cashpayingDetails);
+			$don_id=$this->db->insert_id();
+			
+			/*for($m=0;$m<count($playerdetails);$m++)
+				{
+					$player=array(
+					'player_id' =>$playerdetails[$m]['player_id'],
+					'player_name'=>$playerdetails[$m]['player_name'],
+					'add_date'=>$dt,
+					'coupon'=>$coupon,
+
+					'org_name'=>$user['orgname'],
+					'cust_name'=>$this->input->post('fname')
+
+					);
+					 $this->db->insert('game_card', $player);
+				}*/
+
+				$Q = $this->db->query('select * from sf_scoring_period');
+
+
+				if ($Q->num_rows() > 0){
+					$row = $Q->result_array();
+							foreach($row as $r)
+							{
+
+								$from = $r['from'];
+								$to = $r['to'];
+
+							 $string=$to;
+							 $mnt=substr($string,3,2);
+							 $cur_mnt=date('m');
+									 if($mnt==$cur_mnt)
+									 {
+										$from = $r['from'];
+										$to = $r['to'];
+										 $invoice=array(
+												'invoice_from' =>$from,
+												'invoice_to'=>$to,
+												'invoice_date'=>$dt,
+												'org'=>$user['orgname'],
+
+												'don'=> $this->input->post('donate'),
+												'pay_type'=>'cash',
+												'status'=>'due'
+
+												);
+									$this->db->insert('invoice', $invoice);
+										break;
+
+									 }
+									
+
+							 }
+
+
+				}
+
+
+		$this->updatePlayers($don_id);
+		
 	}
 
 
 
-	 function get_template($template_id ){
-		 $option=array('template_id' => $template_id);
-		$query=$this->db->get_where('email_template',$option);
+
+	 function get_template($template_id){
+	 //echo '-------';
+		 //$option=array('template_id' => $template_id);
+	//$this->db->select('jj');
+	// $this->db->where('template_id', $template_id);
+		$query=$this->db->query("select * from sf_email_template where template_id='".$template_id."'");
 		if( $query->num_rows()>0){
 			return $query->row_array();
+			// echo $this->db->last_query();echo '++++++++++++++';exit;
 		}else{
+		//echo '-------';
 			return false;
 		}
 	 }

@@ -135,27 +135,30 @@ class adminstatmodel extends CI_Model {
 
 	function editScoring($sp_id,$type,$postdata)
 	 {
-	// print_r($postdata);
-	   $count = $this->input->post('count'); 
+				$name = $this->input->post('name');
+	           $count = $this->input->post('count');
 				$id = $this->input->post('id');
 				$points = $this->input->post('points');
 				$name = $this->input->post('name');
-				$this->chngStatus('inactive',$sp_id,$type);
+				
+				
+				
 				for ($j = 0; $j < ($count-1); $j++) {
-			
-				 $data = array(
+				
+				$data = array(
 				 		'player_id' =>$id[$j],
 						'player_name' =>$name[$j],
 						'player_pts' =>$points[$j],
 						'game_date_id'=>$sp_id
-					   
+					  
 						 );
-				//print_r($data);
+				//print_r($data);exit;
 				/*$this->db->where('player_id', $id[$j]);
 				$this->db->update('players', $data);*/
 				$this->db->insert('player_pts', $data);
 		
-		}
+		      }
+			$this->chngStatus('inactive',$sp_id,$type);
 			
 			if($type=='MLB')
 			{

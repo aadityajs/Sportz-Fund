@@ -4,15 +4,28 @@ $url = empty($url) ? base_url() : $url;
 ?>
 </div></div>
 <?php
-if (site_url($url) == site_url()) {
-?>
+	if (site_url($url) == site_url()) {
+	?>
 
-<div class="clear"></div>
-	<div class="center_align" style="margin: 10px auto 0 auto;"><img src="<?php echo $this->config->item('theme_url'); ?>images/winner.gif" alt="" width="440" height="29" /></div>
 	<div class="clear"></div>
-	<div class="bottom_bg"><p>Mike L from Pittsburg, PA - $25, Mike L from Pittsburg, PA - $25, Mike L from Pittsburg, PA - $25, Mike L from Pittsburg, PA - $25, Mike L from Pittsburg</p></div>
-<?php } ?>
-
+		<div class="center_align" style="margin: 10px auto 0 auto;"><img src="<?php echo $this->config->item('theme_url'); ?>images/winner.gif" alt="" width="440" height="29" /></div>
+		<div class="clear"></div>
+		<div class="bottom_bg">
+			<p style="padding-left: 20px;">
+			<?php 
+			if($winnerBrodcast!='')
+			{
+			foreach ($winnerBrodcast as $key=>$value) {
+				echo $value['winner_name'].' - $'.$value['winner_prize'].', ';
+			} }
+			else
+			{
+				echo 'Be The First Winner';
+			}
+			?>
+			</p>
+		</div>
+	<?php } ?>
 
 </div>	<!-- main container ends -->
 <div class="clear"></div>
@@ -58,7 +71,7 @@ if (site_url($url) == site_url()) {
 		  </ul>
 			</div>
 			<div class="clear"></div>
-			<div style="float: none; width: 370px; margin: 36px auto 0 auto;"><span>&copy; Copyright 2012 SportxFund.com. all right reserved</span></div>
+			<div style="float: none; width: 370px; margin: 36px auto 0 auto;"><span>&copy; Copyright 2012 SportzFund.com. all right reserved</span></div>
 </div>
 </div>
 </body>

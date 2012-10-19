@@ -72,11 +72,15 @@ public function __construct()
 	            $arrCoupons = $this->admindonationmodel->getCouponsById($org_uname);
 
 	            //print_r($arrCoupons);
-
+				
 
 	           echo '<select name="coupon" style="width:65px;"><option value="0">Select Coupon</option>';
 	           foreach ($arrCoupons as $key=>$val) {
-					echo '<option value="'.$val['coupon'].'|'.$val['fname'].' '.$val['lname'].'">'.$val['coupon'].'</option>';
+			   	$a=explode(',',$val['coupon']);
+					for($i=0;$i<count($a);$i++)
+					{
+						echo '<option value="'.$a[$i].'|'.$val['fname'].' '.$val['lname'].'">'.$a[$i].'</option>';
+					}
 	           }
 	           echo '</select>';
             } else {
@@ -129,9 +133,9 @@ public function __construct()
 
 	}
 
-	public function delete($player_id) {
+	public function delete($winner_id) {
 		$$data['admindetail']=$this->adminmodel->showCurrentAdmin();
-		$this->adminwinnermodel->deletePlayer($player_id);
+		$this->adminwinnermodel->deleteWinner($winner_id);
 		//exit;
 	}
 

@@ -10,6 +10,11 @@ class index extends CI_Controller {
 		parent::__construct();
 		$this->load->theme('admintheme');
 		$this->load->model('adminmodel');
+		$this->load->model('adminorganizationmodel');
+		$this->load->model('admindonationmodel');
+		$this->load->model('adminteammodel');
+		$this->load->model('adminplayermodel');
+		$this->load->model('adminwinnermodel');
 
 	}
 
@@ -35,6 +40,13 @@ class index extends CI_Controller {
 		}
 	$id = $this->session->userdata('adminid');
 	$data['admindetail']= $this->adminmodel->get_details($id);
+	$data['allorg'] = $this->adminorganizationmodel->listAllOrg();
+	$data['alldonation'] = $this->admindonationmodel->listAllDonation();
+	$data['alldonationcash'] = $this->admindonationmodel->listAllCash();
+	$data['allteam'] = $this->adminteammodel->listAllTeam();
+	$data['allplayer'] = $this->adminplayermodel->listAllPlayer();
+	$data['allwinner'] = $this->adminwinnermodel->listAllWinner();
+	
 	$this->load->view('backend/admin_details',$data);
 	}
 

@@ -32,10 +32,10 @@
 				<td class="table_date"><?php echo $allwinner[$i]['winner_prize']; ?></td>
 				<td class="table_title"><?php echo ucfirst($allwinner[$i]['is_active']); ?></td>
 				<td>
-				<a href="<?php echo site_url("admin/player/status/").'/'.$allwinner[$i]['is_active'].'/'.$allwinner[$i]['winner_id']; ?>"><img src="<?php echo $this->config->item('admin_theme_url')?>img/accept.jpg" alt="accepted"/></a>
-				<a href="<?php echo site_url("admin/player/delete/").'/'.$allwinner[$i]['winner_id']; ?>" onclick="return confirm('Are you sure to delete <?php echo $allwinner[$i]['winner_name']; ?>?');"><img src="<?php echo $this->config->item('admin_theme_url')?>img/cancel.jpg" alt="cancel"/></a>
-				<!-- <a href="#"><img src="<?php echo $this->config->item('admin_theme_url')?>img/folder.jpg" alt="folder"/></a>-->
-				<a href="<?php echo site_url("admin/player/edit/").'/'.$allwinner[$i]['winner_id']; ?>"><img src="<?php echo $this->config->item('admin_theme_url')?>img/edit.jpg" alt="edit"/></a>
+				<a href="<?php echo site_url("admin/winner/status/").'/'.$allwinner[$i]['is_active'].'/'.$allwinner[$i]['winner_id']; ?>"><img src="<?php echo $this->config->item('admin_theme_url')?>img/accept.jpg" alt="accepted"/></a>
+				<a href="<?php echo site_url("admin/winner/delete/").'/'.$allwinner[$i]['winner_id']; ?>" onclick="return confirm('Are you sure to delete <?php echo $allwinner[$i]['winner_name']; ?>?');"><img src="<?php echo $this->config->item('admin_theme_url')?>img/cancel.jpg" alt="cancel"/></a>
+				
+				<!--<a href="<?php echo site_url("admin/player/edit/").'/'.$allwinner[$i]['winner_id']; ?>"><img src="<?php echo $this->config->item('admin_theme_url')?>img/edit.jpg" alt="edit"/></a>-->
 				</td>
 				<!--<td><span class="approved">Approved</span></td>
 				 <span class="ico_pending">Pending</span> -->

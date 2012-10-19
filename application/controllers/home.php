@@ -38,7 +38,9 @@ class Home extends CI_Controller {
 		}
 		$data['userdetail']=$this->usermodel->getuser($user_id);
 		$data['totalDonation']=$this->usermodel->totalDonation();
-
+		$data['winnerBrodcast']=$this->usermodel->winnerBrodcast();
+		//print_r($data);exit;
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/home', $data);
 	}

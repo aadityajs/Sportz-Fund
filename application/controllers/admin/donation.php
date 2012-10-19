@@ -27,7 +27,15 @@ public function __construct()
 		$this->load->view('backend/list-donation', $data);
 		//exit;
 	}
+	public function showCashPaying() {
+		$data['admindetail']=$this->adminmodel->showCurrentAdmin();
 
+		$data['alldonation'] = $this->admindonationmodel->listAllCash();
+		//print_r($data['allplayer']);
+		//exit;
+		$this->load->view('backend/list-cashpaying', $data);
+		//exit;
+	}
 	public function add() {
 		$data['admindetail']=$this->adminmodel->showCurrentAdmin();
 		$data['allTeams'] = $this->adminteammodel->listAllTeam();
@@ -91,15 +99,15 @@ public function __construct()
 		//exit;
 	}
 
-	public function status($stat,$id) {
+	public function status($stat,$id,$type) {
 		$data['admindetail']=$this->adminmodel->showCurrentAdmin();
-		$this->admindonationmodel->chngStatus($stat,$id);
+		$this->admindonationmodel->chngStatus($stat,$id,$type);
 
 	}
 
-	public function delete($don_id) {
+	public function delete($don_id,$type) {
 		$$data['admindetail']=$this->adminmodel->showCurrentAdmin();
-		$this->admindonationmodel->deletePlayer($player_id);
+		$this->admindonationmodel->deleteDonation($don_id);
 		//exit;
 	}
 

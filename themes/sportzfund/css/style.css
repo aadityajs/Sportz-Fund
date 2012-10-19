@@ -570,7 +570,7 @@ input.textfield{
 	width: 693px;
 	height: 603px;
 	float: none;
-	background: url(../images/banner_bgbot.png) left top no-repeat;
+	/*background: url(../images/banner_bgbot.png) left top no-repeat;*/
 	margin:  0 auto;
 }
 .banner_bgbot p{
@@ -969,7 +969,18 @@ input.yes_btn{
 	margin: 0;
 	background: url(../images/yes_btn1.gif) left top no-repeat;
 }
-
+input.yes_btn1{
+	width: 93px;
+	height: 31px;
+	border: 0;
+	font: normal 18px/50px "Futura MdCn BT", Arial, Helvetica, sans-serif;
+	color: #fff;
+	padding: 0;
+	cursor: pointer;
+	text-transform: uppercase;
+	margin: 0;
+	background: url(../images/yes_btn1.gif) left top no-repeat;
+}
 input.make_btn{
 	width: 269px;
 	height: 49px;
@@ -1088,9 +1099,9 @@ input.make_btn{
 	margin: 17px auto 5px auto;
 }
 .label_raised{
-	width: 120px;
+	width: 202px;
 	height: auto;
-	float: left;
+	float: none;
 	font: bold 15px/18px Arial, Helvetica, sans-serif;
 	color: #3f3f3f;
 	text-align: left;
@@ -1134,7 +1145,83 @@ input.make_btn{
 	vertical-align: middle;
 	text-transform: uppercase;
 }
-
+.msg{
+float:left;
+color:#990000;
+text-align:center;
+text-align:left;
+}
+/*-----------------------01-10-12--Sudipta ray----------------------------------------------*/
+.game_card{
+	width: 691px;
+	height: 572px;
+	background: #fff;
+	border: 1px solid #dddedd;
+}
+.game_card_center{
+	width: 646px;
+	height: 495px;
+	padding: 18px 0 18px 0;
+	margin: 20px auto;
+	background: url(../images/card_center_img.jpg) left top no-repeat;
+	border: 0;
+}
+.game_card_top_img{
+	width: 609px;
+	height: 357px;
+	padding: 0 0 11px 17px;
+	margin: 0;
+}
+.card_bot{
+	width: 572px;
+	height: auto;
+	background: #5c5c5d;
+	border: 0;
+	padding: 15px 18px 10px 18px;
+	margin: 0 0 0 17px;
+}
+.card_bot h2{
+	font: normal 24px/26px Arial, Helvetica, sans-serif;
+	color: #fff;
+	padding: 0;
+	margin: 0;
+}
+.Success_box{
+	width: 100%;
+	height: auto;
+	margin: 5px 0 2px 0;
+}
+.Success_box ul{
+	padding: 0;
+	margin: 0;
+}
+.Success_box ul li{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font: normal 12px/22px Arial, Helvetica, sans-serif;
+	color: #fff;
+	text-align: left;
+	vertical-align: middle;
+}
+.Success_box ul li a{
+	padding: 0;
+	margin: 0;
+	font: normal 12px/16px Arial, Helvetica, sans-serif;
+	color: #ff6805;
+	text-align: left;
+	vertical-align: middle;
+	text-decoration: none;
+}
+.Success_box ul li a:hover{
+	padding: 0;
+	margin: 0;
+	font: normal 12px/16px Arial, Helvetica, sans-serif;
+	color: #ff6805;
+	text-align: left;
+	vertical-align: middle;
+	text-decoration: none;
+}
 
 
 

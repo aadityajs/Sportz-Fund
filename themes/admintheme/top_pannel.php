@@ -9,6 +9,7 @@
 				<a href="#a">Donation</a><!-- First level MENU -->
 				<ul>
 					<li><a href="<?php echo site_url("admin/donation/show")?>">List</a></li>
+					<li><a href="<?php echo site_url("admin/donation/showCashPaying")?>">Cash Paying List</a></li>
 				</ul>
 			</li>
 

@@ -47,18 +47,23 @@
   <tr>
     <td width="25%"><span>Donor </span></td>
     <td width="15%"><span>Donation amount</span></td>
-    <td width="25%"><span>Seller </span></td>
+    <td width="25%"><span>Organization </span></td>
     <td width="15%"><span>Date Sold</span></td>
     <td width="20%"><span>Payment</span></td>
   </tr>
+  <?php
+  foreach($donation as $don)
+  {
+  ?>
   <tr>
-    <td>Les Miles</td>
-    <td>$50 </td>
-    <td> Mike Wilson</td>
-    <td> 3/4/2012</td>
-    <td>CC </td>
+    <td><?php echo $don['fname'];?></td>
+    <td>$<?php echo $don['donation'];?></td>
+    <td> <?php echo $don['orgname'];?></td>
+    <td><?php echo substr($don['date'],0,10);?></td>
+    <td><?php if($don['payment']=='paypalPayment'){echo 'Paypal';} ?> </td>
   </tr>
-  <tr>
+  <?php } ?>
+ <!-- <tr>
     <td>Nick Saban </td>
     <td>$10 </td>
     <td> Mike Wilson</td>
@@ -78,7 +83,7 @@
     <td>Tom Smith </td>
     <td> 3/8/2012</td>
     <td>Check </td>
-  </tr>
+  </tr>-->
 </table>
 </td>
     </tr>

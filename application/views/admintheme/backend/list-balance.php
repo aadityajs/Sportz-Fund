@@ -35,7 +35,7 @@
 				
 				
 				
-				<td class="table_title"><?php if($balancedue[$i]['pay_type']=='paypalPayment'){ echo 'Paypal'; } ?></td>
+				<td class="table_title"><?php if($balancedue[$i]['pay_type']=='paypalPayment'){ echo 'Paypal'; }else{echo 'Cash';} ?></td>
 				<td class="table_date"><?php echo $balancedue[$i]['due']; ?></td>
 				
 			

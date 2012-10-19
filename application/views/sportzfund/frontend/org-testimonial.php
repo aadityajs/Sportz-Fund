@@ -11,8 +11,10 @@
     <tr>
       <td style="padding: 15px 0 5px 0;">Had great success using Sportzfund as your fundraiser?  Please share your success stories with us.  We would love to hear from you!</td>
     </tr>
-	<tr><td><strong>Name: </strong>
-	<input type="text" name="name" value=""  />
+	<tr><td><strong>Name: </strong><?php echo $userdetail['fname']; echo ' - '; echo $userdetail['lname'];?>
+	<input type="hidden" name="name" value="<?php echo $userdetail['fname']; echo '-'; echo $userdetail['lname'];?>"  />
+	</td>
+    </tr>
     <tr>
       <td style="padding: 20px 0;"><textarea name="msg" class="textareabg" style="width: 690px; height: 290px;"></textarea></td>
     </tr>

@@ -30,7 +30,16 @@ class Fundraiser extends CI_Controller {
 
 	public function index() {
 		$data['allOrgList'] = $this->usermodel->listAllOrg();
-
+		
+		//print_r($data['allOrgList'][0]['orgname']);
+		for($i=0;$i<count($data['allOrgList']);$i++)
+		{
+		//echo $data['allOrgList'][$i]['orgname'];
+		$data['allDonList'][$i] = $this->usermodel->listAllDon($data['allOrgList'][$i]['orgname']);
+		
+		}
+		
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->view('frontend/list_fundraiser', $data);
 	}
 

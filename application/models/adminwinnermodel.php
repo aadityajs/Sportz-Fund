@@ -87,9 +87,9 @@ class adminwinnermodel extends CI_Model {
 		//echo $stat;
 		//echo $id;
 		$stat == 'active' ? $stat = 'inactive' : $stat = 'active';
-	 	$this->db->where('player_id', $id);
-	 	$this->db->update('players', array('is_active' => $stat));
-		redirect('admin/player/show');
+	 	$this->db->where('winner_id', $id);
+	 	$this->db->update('winner', array('is_active' => $stat));
+		redirect('admin/winner/show');
 	 }
 
 	function deleteDonation($player_id) {
@@ -97,7 +97,10 @@ class adminwinnermodel extends CI_Model {
 		//redirect('admin/player/show');
 	}
 
-
+	function deleteWinner($winner_id) {
+		$this->db->delete('winner', array('winner_id' => $winner_id));
+		redirect('admin/winner/show');
+	}
 	function editPlayer($player_id)
 	 {
 	$data = array(

@@ -2,6 +2,9 @@
 <div><h1>Contact Us</h1>
 </div>
 <div class="clear"></div>
+<?php if ($this->session->userdata('message')) { ?>
+	<div class="msg"><?php echo $this->session->userdata('message');?></div>
+<?php $this->session->unset_userdata('message'); } ?>
 <div>
 <form method="post" name="frmAddContact" >
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="registration">
@@ -30,6 +33,7 @@
           <th><strong>Reason for Contact:</strong></th>
           <td><div class="styled_select2" style="width: 337px;">
 		  <select name="reason" id="reason" style="width: 357px; height: 33px;" >
+		  <option value="">Select Reason</option>
 			<option value="0">Donation Enquiry</option>
 			<option value="1">Other Information</option>
 			</select>
@@ -48,7 +52,7 @@
       <td><img src="images/spacer.gif" alt="" width="1" height="23" /></td>
     </tr>
     <tr>
-      <td><input type="submit" name="contactsubmit" class="send_btn" value="add"/></td>
+      <td><input type="submit" name="contactsubmit" class="send_btn" value=" "/></td>
     </tr>
 	<tr>
       <td><img src="images/spacer.gif" alt="" width="1" height="23" /></td>

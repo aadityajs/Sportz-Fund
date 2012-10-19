@@ -10,6 +10,8 @@ class Pages extends CI_Controller {
 			$this->config->load_db_items();
 			 $this->load->theme('sportzfund');
 			$this->load->model('cmsmodel');
+			$this->load->model('usermodel');
+			$this->load->model('adminplayermodel');
 			 $this->load->library('email');
 			 // $this->load->model('usermodel');
 			 //$this->load->model('school');
@@ -20,14 +22,35 @@ class Pages extends CI_Controller {
 
 	   function testimonial()
 	{
+		$submit=$this->input->post('Submit2');
+		if($submit)
+		{
+		$name=$this->input->post('name');
+		$msg=$this->input->post('msg');
+				if($name=='' && $msg =='')
+				{
+					$msg="Sorry. Name and Message can not be blank.";
+					$this->session->set_userdata('message',$msg);
+					redirect("pages/testimonial/");
+				}
+				else if($name=='' || $msg =='')
+				{
+					$msg="Sorry. Name or Message can not be blank.";
+					$this->session->set_userdata('message',$msg);
+					redirect("pages/testimonial/");
+				}
 
+		$this->cmsmodel->insertTesti();
+		}
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
-		$this->load->view('frontend/testimonial');
+		$this->load->view('frontend/testimonial',$data);
 	}
 	 function contact_us()
 	{
 
 		//$this->load->theme('sportzfund');
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$submit=$this->input->post('contactsubmit');
 		if($submit) {
 			$cont_name = $this->input->post('cont_name');
@@ -35,19 +58,25 @@ class Pages extends CI_Controller {
 			$phone_no = $this->input->post('phone_no');
 			$content = $this->input->post('content');
 			$reason = $this->input->post('reason');
-
-
-			$this->cmsmodel->send_contact();
-
+			
+			if($cont_name=='' && $email=='' && $phone_no=='' && $content=='' && $reason=='')
+			{
+					$msg="Sorry. You have to fill up all the fields.";
+					$this->session->set_userdata('message',$msg);
+					redirect("pages/contact_us/");
+			}
+			
+			   $this->cmsmodel->send_contact();
+		
 
 		}
-		$this->load->view('frontend/contact_us');
+		$this->load->view('frontend/contact_us',$data);
 	}
 	 function why_sportzfund()
 	{
 		$cms_id =5;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
-
+        $data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -55,7 +84,7 @@ class Pages extends CI_Controller {
 	{
 		$cms_id =6;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
-
+        $data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -63,7 +92,7 @@ class Pages extends CI_Controller {
 	{
 		$cms_id =7;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
-
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -71,7 +100,7 @@ class Pages extends CI_Controller {
 	{
 		$cms_id =12;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
-
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 		
@@ -80,12 +109,20 @@ class Pages extends CI_Controller {
 	{
 		//$cms_id =11;
 		//$data['cms']=$this->cmsmodel->get_page($cms_id);
-
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$submit=$this->input->post('searchsubmit');
 		if($submit) {
 			 $code = $this->input->post('code');
 
 			$data['searchWin'] = $this->cmsmodel->search_code($code);
+			$data['player'] = $this->adminplayermodel->listAllGameCard($code);
+			$data['pts'] = $this->adminplayermodel->search_pts($data['searchWin']['win_period'],$data['player']);
+			//print_r($data['searchWin']);exit;
+			if(empty($data['searchWin']))
+			{
+				$msg="Sorry. There is no winner of this coupon.";
+				$this->session->set_userdata('message',$msg);
+			}
 			
 		}
 
@@ -96,7 +133,7 @@ class Pages extends CI_Controller {
 		}
 		else
 		{
-		$this->load->view('frontend/did_i_win');
+		$this->load->view('frontend/did_i_win',$data);
 		}
 		//$this->load->view('frontend/cms',$data);
 	}
@@ -104,7 +141,7 @@ class Pages extends CI_Controller {
 	{
 		$cms_id =13;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
-
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -112,6 +149,7 @@ class Pages extends CI_Controller {
 	{
 		$cms_id = 1;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -119,6 +157,7 @@ public function privacy_policy()
 	{
 		$cms_id = 4;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -126,6 +165,7 @@ public function privacy_policy()
 	{
 		$cms_id = 14;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -134,6 +174,7 @@ public function privacy_policy()
 	{
 		$cms_id = 15;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -141,6 +182,7 @@ public function privacy_policy()
 	{
 		$cms_id = 16;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}
@@ -148,6 +190,7 @@ public function privacy_policy()
 	{
 		$cms_id = 17;
 		$data['cms']=$this->cmsmodel->get_page($cms_id);
+		$data['usertesti'] = $this->usermodel->gettesti();
 		$this->load->theme('sportzfund');
 		$this->load->view('frontend/cms',$data);
 	}

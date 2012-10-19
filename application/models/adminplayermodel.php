@@ -17,6 +17,28 @@ class adminplayermodel extends CI_Model {
 
 //===========================================================================================================
 
+	function search_pts($period,$player)
+	{
+	//print_r($player[0]);
+	//echo count($player);
+	$sum=0;
+	for($i=0;$i<count($player);$i++)
+	{
+		//echo $player[$i]['player_id'];echo '<br>';
+	$Q=$this->db->query("select pt.player_pts from sf_player_pts pt,sf_game_date dt where pt.game_date_id=dt.game_id and dt.game_period='".$period."' and pt.player_id='".$player[$i]['player_id']."'");
+	
+	
+	if ($Q->num_rows() > 0){
+			$row = $Q->row_array();
+			//echo $row['player_pts'];
+			 $sum=$sum+$row['player_pts'];
+			//return $row;
+		}
+		//else
+		//return false;
+		}
+		return $sum;	
+		}
 
 	function listAllPlayer(){
 		$this->db->select('*');
@@ -28,6 +50,26 @@ class adminplayermodel extends CI_Model {
 
 		if ($Q->num_rows() > 0){
 			$row = $Q->result_array();
+			return $row;
+		}
+		else
+		return false;
+	}
+	function listAllGameCard($coupon){
+	//echo $coupon;exit;
+		/*$this->db->select('*');
+		$this->db->where('coupon', $coupon);
+		$this->db->order_by("player_name", "asc");
+		$Q = $this->db->get('game_card');*/
+		
+		$Q=$this->db->query("select * from sf_game_card where coupon='".$coupon."' order by player_name");
+		//echo '++++++++++++++++++++++'.$this->db->last_query();
+		//echo $Q->num_rows();
+		//exit;
+
+		if ($Q->num_rows() > 0){
+			$row = $Q->result_array();
+			
 			return $row;
 		}
 		else
@@ -50,13 +92,18 @@ class adminplayermodel extends CI_Model {
 		else
 		return false;
 	}
-	
+
 	function listPlayerByGroupRand() {
 		$this->db->select('*');
-		 $this->db->group_by("player_group");
-		
-		
-		$Q = $this->db->get('players');
+		//$this->db->group_by("player_group");
+
+
+		$Q = $this->db->query('
+						SELECT tmp.player_name,tmp.player_id, tmp.player_team,tmp.player_group
+						FROM sf_players
+						LEFT JOIN (SELECT * FROM sf_players ORDER BY RAND()) tmp ON (sf_players.player_group= tmp.player_group)
+						GROUP BY tmp.player_group
+						ORDER BY RAND();');
 		//echo '++++++++++++++++++++++'.$this->db->last_query();
 		//echo $Q->num_rows();
 		//exit;
@@ -64,6 +111,9 @@ class adminplayermodel extends CI_Model {
 		if ($Q->num_rows() > 0){
 			$row = $Q->result_array();
 			return $row;
+
+			//echo '<pre>'.print_r($row, true).'</pre>';
+			//exit;
 		}
 		else
 		return false;

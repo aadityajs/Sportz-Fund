@@ -1,8 +1,8 @@
 	<!--start body-->
-<div class="bottom_arrow"></div>
-	<div class="clear"></div>
+<!--<div class="bottom_arrow"></div>
+-->	<div class="clear"></div>
 	<div class="containt_box">
-	<div class="containt_left">
+	<div class="containt_left" style="margin-top:5px;">
 	<div><h1>Like SportzFund.com</h1></div>
 	<div class="clear"></div>
 	<div class="likebg">
@@ -11,7 +11,7 @@
 	<img src="<?php echo $this->config->item('theme_url'); ?>images/google.gif" alt="" width="192" height="42" border="0"/></div>
 	<div class="likebg" style="height: 76px;"><img src="<?php echo $this->config->item('theme_url'); ?>images/twitter.gif" alt="" width="184" height="42" border="0"/><img src="<?php echo $this->config->item('theme_url'); ?>images/tweet.gif" alt="" width="56" height="62" border="0"/></div>
 	</div>
-	<div class="containt_mid">
+	<div class="containt_mid" style="margin-top:5px;">
 	<div class="fun_mid">
 	<div><h1>Fundraising Now gets more Fun! <br/>Registration successful, thanks for your precious time.</h1></div>
 	<div class="clear"></div>

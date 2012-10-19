@@ -93,10 +93,10 @@ class adminreportmodel extends CI_Model {
 		
 		
 	function listscoringperiod(){
-		$this->db->select('*');
+		/*$this->db->select('*');
 		$this->db->order_by("sp_id", "asc");
-		$Q = $this->db->get('scoring_period');
-		
+		$Q = $this->db->get('scoring_period');*/
+		$Q=$this->db->query("select * from sf_scoring_period order by sp_id asc");
 
 		if ($Q->num_rows() > 0){
 			$row = $Q->result_array();

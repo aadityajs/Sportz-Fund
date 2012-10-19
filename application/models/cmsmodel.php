@@ -17,7 +17,22 @@ class Cmsmodel extends CI_Model {
 
 //===========================================================================================================
 
+	function insertTesti() {
 
+		
+		$testiDetails = array(
+				    
+					'user_name' =>  $this->input->post('name'),
+					'msg' => $this->input->post('msg'),
+					'is_active' => 'active'
+			   );
+
+			 
+
+		  $this->db->insert('testimonial', $testiDetails);
+	}
+	
+	
 	 function get_page($cms_id){
 		 $option=array('cms_id' => $cms_id);
 		$query=$this->db->get_where('cms',$option);

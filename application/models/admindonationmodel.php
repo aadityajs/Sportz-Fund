@@ -20,6 +20,7 @@ class admindonationmodel extends CI_Model {
 
 	function listAllDonation(){
 		$this->db->select('*');
+		$this->db->where('payment','paypalPayment');
 		$this->db->order_by("orgname", "asc");
 		$Q = $this->db->get('donation');
 		//echo '++++++++++++++++++++++'.$this->db->last_query();
@@ -34,11 +35,27 @@ class admindonationmodel extends CI_Model {
 		return false;
 	}
 
+	function listAllCash(){
+		$this->db->select('*');
+		$this->db->where('payment','cash');
+		$this->db->order_by("orgname", "asc");
+		$Q = $this->db->get('donation');
+		//echo '++++++++++++++++++++++'.$this->db->last_query();
+		//echo $Q->num_rows();
+		//exit;
 
+		if ($Q->num_rows() > 0){
+			$row = $Q->result_array();
+			return $row;
+		}
+		else
+		return false;
+	}
 	function listAllDonation1(){
 		$this->db->distinct('coupon');
 		$this->db->select('orgname');
 		$this->db->select('coupon');
+		
 		$this->db->order_by("orgname", "asc");
 		$this->db->count_all('donation');
 		
@@ -74,19 +91,33 @@ class admindonationmodel extends CI_Model {
 
 	
 
-	 function chngStatus($stat,$id) {
+	 function chngStatus($stat,$id,$type) {
 
 		//echo $stat;
 		//echo $id;
 		$stat == 'active' ? $stat = 'inactive' : $stat = 'active';
 	 	$this->db->where('don_id', $id);
 	 	$this->db->update('donation', array('is_active' => $stat));
+		if($type=='cash')
+		{
+		redirect('admin/donation/showCashPaying');
+		}
+		else
+		{
 		redirect('admin/donation/show');
+		}
 	 }
 
-	function deletePlayer($don_id) {
+	function deleteDonation($don_id,$type) {
 		$this->db->delete('donation', array('don_id' => $don_id));
+		if($type=='cash')
+		{
+		redirect('admin/donation/showCashPaying');
+		}
+		else
+		{
 		redirect('admin/donation/show');
+		}
 	}
 
 

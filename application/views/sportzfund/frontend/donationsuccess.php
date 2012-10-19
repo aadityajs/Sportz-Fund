@@ -9,21 +9,7 @@ $postval=$this->session->userdata('post');
 //print_r($this->session->userdata('post'));exit;
 }
 ?>
-<script type="text/javascript">
 
-function printSelection(node){
-
-  var content=node.innerHTML
-  var pwin=window.open('','print_content','width=693,height=450');
-
-  pwin.document.open();
-  pwin.document.write('<html><head><link href="<?php echo $this->config->item('theme_url')?>css/style.css" rel="stylesheet" type="text/css"/></head><body onload="window.print()">'+content+'</body></html>');
-  pwin.document.close();
-
-  setTimeout(function(){pwin.close();},1000);
-
-}
-</script>
 <div class="containt_box">
 <div class="leftcol">
 <div><h1>GAME CARD </h1>
@@ -42,10 +28,14 @@ function printSelection(node){
 					 $cur_mnt=date('m');
 					 if($mnt==$cur_mnt)
 					 {
+					 $from=$ress->from;
+					 $to=$ress->to;
+					 
+					 }  }
 					 ?>
 
 
-      <td style="padding: 15px 0 10px 0;">Thanks you for supporting "LDBL".  Below is your free Sportzfund game card(s).   This card, with your unique fantasy player combination, will be active from <?php echo $ress->from; echo ' through '; echo $ress->to; ?>.</td><?php	}  }
+      <td style="padding: 15px 0 10px 0;">Thanks you for supporting "LDBL".  Below is your free Sportzfund game card(s).   This card, with your unique fantasy player combination, will be active from <?php echo $from ; echo ' through '; echo $to; ?>.</td><?php	
 				?>
     </tr>
 	<tr>
@@ -56,13 +46,18 @@ function printSelection(node){
 	</tr>
 	<tr>
       <td>
-
-	  <div id="gameCard" class="like_to_bg" style="margin: 3px auto 10px auto;">
+	<?php
+	for($i=0;$i<count($player_details);$i++)
+	  {
+	?>
+	  <div id="gameCard<?php echo $i;?>" class="like_to_bg" style="margin: 3px auto 10px auto;">
 	  <div class="like_to1">
 	  <div class="like_to">
 	  <ul>
 	  <?php
-	  foreach($player_details as $row)
+	  //print_r($player_details[0]);exit;
+	  
+	  foreach($player_details[$i] as $row)
 	  {
 	  ?>
 	  	<li><div class="img2"><img src="<?php echo $this->config->item('theme_url')?>images/game_img1.png" border="0" /></div><div><p><?php echo $row['player_name'];?></p></div></li>
@@ -71,11 +66,29 @@ function printSelection(node){
 
 		</ul>
 		<div class="clear"></div>
+		<div><strong>Coupon Code:<?php echo $row['coupon']; ?></strong></div>
 	  </div>
 	  </div>
 	  <div class="clear"></div>
 	  </div>
-	  <a href="" onclick="printSelection(document.getElementById('gameCard'));return false"><h2><center>Get Print of Your Game Card</center></h2></a>
+	 
+	  <a href="" onclick="printSelection(document.getElementById('gameCard<?php echo $i;?>'));return false"><h2><center>Get Print of Your Game Card</center></h2></a>
+	  <script type="text/javascript">
+
+		function printSelection(node){
+		
+		  var content=node.innerHTML
+		  var pwin=window.open('','print_content','width=693,height=450');
+		
+		  pwin.document.open();
+		  pwin.document.write('<html><head><link href="<?php echo $this->config->item('theme_url')?>css/style.css" rel="stylesheet" type="text/css"/></head><body onload="window.print()">'+content+'</body></html>');
+		  pwin.document.close();
+		
+		  setTimeout(function(){pwin.close();},1000);
+		
+		}
+		</script>
+	   <?php } ?>
 	 </td>
     </tr>
 	<tr>
@@ -122,7 +135,9 @@ function printSelection(node){
   </table>
 </div>
 
-
+<?php 
+$this->session->unset_userdata('coupon');
+?>
 
 </div>
 
